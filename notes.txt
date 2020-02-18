@@ -1,1 +1,6 @@
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+
+database : migration repo
+flask db init
+flask db migrate -m "my message"
+flask db upgrade
