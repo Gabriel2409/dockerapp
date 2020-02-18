@@ -4,3 +4,9 @@ database : migration repo
 flask db init
 flask db migrate -m "my message"
 flask db upgrade
+
+
+debug email
+export MAIL_SERVER=localhost
+export MAIL_PORT=8025
+python3.8 -m smtpd -n -c DebuggingServer localhost:8025
