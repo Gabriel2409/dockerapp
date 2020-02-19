@@ -10,3 +10,5 @@ debug email
 export MAIL_SERVER=localhost
 export MAIL_PORT=8025
 python3.8 -m smtpd -n -c DebuggingServer localhost:8025
+
+to send mail with gmail, fix avast issue: https://www.warriorforum.com/main-internet-marketing-discussion-forum/187513-avast-blocking-your-email-heres-fix.html
