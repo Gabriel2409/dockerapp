@@ -1,6 +1,6 @@
-__pycache__
+**/__pycache__
 .vscode*
 venv
 .flaskenv
 app.db
-logs/*
+logs/**
