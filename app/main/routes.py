@@ -1,5 +1,5 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify
-from app import app,db
+from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
+from app import db
 from app.main.forms import EditProfileForm, PostForm
 from flask_login import current_user, login_required
 from app.models import User, Post
@@ -29,7 +29,7 @@ def index():
     page = request.args.get("page", 1, type=int)
 
     posts = current_user.followed_posts().paginate(
-        page, app.config["POSTS_PER_PAGE"], False
+        page, current_app.config["POSTS_PER_PAGE"], False
     )
     next_url = url_for("main.index", page=posts.next_num) if posts.has_next else None
     prev_url = url_for("main.index", page=posts.prev_num) if posts.has_prev else None
@@ -48,7 +48,7 @@ def index():
 def explore():
     page = request.args.get("page", 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, app.config["POSTS_PER_PAGE"], False
+        page, current_app.config["POSTS_PER_PAGE"], False
     )
     next_url = url_for("main.explore", page=posts.next_num) if posts.has_next else None
     prev_url = url_for("main.explore", page=posts.prev_num) if posts.has_prev else None
@@ -69,7 +69,7 @@ def user(username):
     posts = (
         Post.query.filter(Post.author.has(username=username))
         .order_by(Post.timestamp.desc())
-        .paginate(page, app.config["POSTS_PER_PAGE"], False)
+        .paginate(page, current_app.config["POSTS_PER_PAGE"], False)
     )
     # Possible to replace Post.query.filter(Post.author.has(username=username)) with user.posts
 
